@@ -1,11 +1,12 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"gatewayapplicationGatewayApplication/model/models"
-], function(UIComponent, Device, models) {
+	"gatewayapplicationIoTCapstoneProject/model/models",
+	"gatewayapplicationIoTCapstoneProject/utils/IOT"
+], function(UIComponent, Device, models, IOT) {
 	"use strict";
 
-	return UIComponent.extend("gatewayapplicationGatewayApplication.Component", {
+	return UIComponent.extend("gatewayapplicationIoTCapstoneProject.Component", {
 
 		metadata: {
 			manifest: "json"

@@ -7,7 +7,7 @@
         "type": "service",
         "name": "sapui5",
         "entryPath": "/resources",
-        "version": "1.44.10"
+        "version": "1.44.7"
       },
       "description": "SAPUI5 Resources"
     },
@@ -17,9 +17,25 @@
         "type": "service",
         "name": "sapui5",
         "entryPath": "/test-resources",
-        "version": "1.44.10"
+        "version": "1.44.7"
       },
       "description": "SAPUI5 Test Resources"
+    },
+     {
+      "path": "/iotmms/",
+      "target": {
+        "name": "iotmms",
+        "entryPath": "/http"
+      },
+      "description": "iotmms"
+    },
+     {
+      "path": "/iotrdms/",
+      "target": {
+        "name": "sapui5",
+        "entryPath": "/http"
+      },
+      "description": "iotrdms"
     }
   ],
   "sendWelcomeFileRedirect": true

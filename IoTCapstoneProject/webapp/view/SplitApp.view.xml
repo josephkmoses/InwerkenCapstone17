@@ -1,0 +1,56 @@
+<mvc:View controllerName="gatewayapplicationIoTCapstoneProject.controller.SplitApp" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
+		<detailPages>
+			<Page id="detail" title="Sensor Name" class="sapUiStdPage">
+				<headerContent>
+					<HBox>
+				<Switch type="AcceptReject" state="true">
+					<layoutData>
+						<FlexItemData growFactor="1" />
+					</layoutData>
+				</Switch>
+			</HBox>
+				</headerContent>
+				<content>
+					<ObjectHeader
+						title="SensorName">
+						<statuses>
+							<ObjectStatus
+								text="Nothing's Wrong"
+								state="Success" />
+						</statuses>
+								
+						<attributes>
+							<ObjectAttribute text="ID: " />
+							<ObjectAttribute text="Last Updated: " />
+							<ObjectAttribute text="Current Temperature: " />
+							<ObjectAttribute text="Current Brightness: " />
+						</attributes>
+					</ObjectHeader>
+				</content>
+			</Page>
+		</detailPages>
+		<masterPages>
+			<Page id="master" title="master" class="sapUiStdPage">
+				<customHeader>
+					<Toolbar>
+						<SearchField
+							liveChange="onSearch"
+							width="100%" />
+					</Toolbar>
+				</customHeader>
+				<content>
+					<List
+						items="{
+							path: '/SensorCollection'
+						}" >
+						<StandardListItem
+							title="{SensorName}"
+							counter="{Quantity}"/>
+					</List>
+				</content>
+			</Page>
+		</masterPages>
+	</SplitApp>
+</mvc:View>

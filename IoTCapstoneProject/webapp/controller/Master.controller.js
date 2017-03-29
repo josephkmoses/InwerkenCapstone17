@@ -3,7 +3,7 @@ sap.ui.define([
 ], function(Controller) {
 	"use strict";
 
-	return Controller.extend("gatewayapplicationGatewayApplication.controller.Master", {
+	return Controller.extend("gatewayapplicationIoTCapstoneProject.controller.Master", {
 
 	});
 });
