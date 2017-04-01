@@ -4,8 +4,9 @@ sap.ui.define([
 	'sap/ui/core/Fragment',
 	'sap/ui/core/mvc/Controller',
 	'sap/ui/model/Filter',
-	'sap/ui/model/json/JSONModel'
-], function(jQuery, MessageToast, Fragment, Controller, Filter, JSONModel) {
+	'sap/ui/model/json/JSONModel',
+	"gatewayapplicationIoTCapstoneProject/utils/IOT"
+], function(jQuery, MessageToast, Fragment, Controller, Filter, JSONModel, IOT) {
 	"use strict";
 
 	return Controller.extend("gatewayapplicationIoTCapstoneProject.controller.SplitApp", {
@@ -16,6 +17,9 @@ sap.ui.define([
 				'tablet':'tablet-icon.png',
 				'icon':'desktop.ico'
 			});
+			
+			IOT.getDevices(MessageToast.show("Finished grabbing devices", {duration: 5000}));
+			//MessageToast.show(IOT.getDevices(), {duration: 5000});
 		},
 		
 		onOrientationChange: function(oEvent) {
@@ -59,6 +63,29 @@ sap.ui.define([
 				jQuery.sap.log.info("SplitApp object can't be found");
 			}
 			return result;
+		},
+		
+		//Switch functionality
+		onSwitchChange : function(oEvent) {
+			//Gather information for device push
+			//var deviceID;
+			//var messageTypeID;
+			//var timestamp = new Date().getTime();
+			//var messages = null;
+			var isGreen = oEvent.getSource().getState();
+			if(isGreen) {
+				MessageToast.show("Resolving issue...", {duration: 5000});
+				/*
+				messages = [{
+					"id": 12345,
+					"timestamp": timestamp,
+					"setGreenLED": true
+				}];
+				*/
+			} else {
+				MessageToast.show("Creating issue...", {duration: 5000});
+				
+			}
 		}
 		
 	});

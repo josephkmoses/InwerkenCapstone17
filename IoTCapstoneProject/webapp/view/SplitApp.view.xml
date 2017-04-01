@@ -5,7 +5,7 @@
 			<Page id="detail" title="Sensor Name" class="sapUiStdPage">
 				<headerContent>
 					<HBox>
-				<Switch type="AcceptReject" state="true">
+				<Switch type="AcceptReject" state="true" change="onSwitchChange">
 					<layoutData>
 						<FlexItemData growFactor="1" />
 					</layoutData>
@@ -20,7 +20,6 @@
 								text="Nothing's Wrong"
 								state="Success" />
 						</statuses>
-								
 						<attributes>
 							<ObjectAttribute text="ID: " />
 							<ObjectAttribute text="Last Updated: " />
@@ -28,6 +27,64 @@
 							<ObjectAttribute text="Current Brightness: " />
 						</attributes>
 					</ObjectHeader>
+					<IconTabBar expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter text="Table">
+								<Table id="idSensorTable"
+									inset="false"
+									items="{
+										path: '/SensortCollection',
+											sorter: {
+											path: 'Name'
+										}
+								}">
+
+								<columns>
+									<Column
+										width="12em">
+										<Text text="Timestamp" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Brightness (Lux)" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Temperature (Celsius)" />
+									</Column>
+								</columns>
+								<items>
+									<ColumnListItem>
+										<cells>
+											<ObjectIdentifier
+												title="{Name}"
+												text="{ProductId}"/>
+											<Text
+												text="{SupplierName}" />
+											<Text
+												text="{Width} x {Depth} x {Height} {DimUnit}" />
+											<ObjectNumber
+												number="{WeightMeasure}"
+												unit="{WeightUnit}"
+												state="{
+													path: 'WeightMeasure',
+													formatter: 'sap.m.sample.Table.Formatter.weightState'
+												}" />
+											<ObjectNumber
+													number="{
+														parts:[{path:'Price'},{path:'CurrencyCode'}],
+														type: 'sap.ui.model.type.Currency',
+														formatOptions: {showMeasure: false}
+													}"
+													unit="{CurrencyCode}" />
+										</cells>
+									</ColumnListItem>
+									</items>
+									</Table>
+									</IconTabFilter>
+									<IconTabFilter text="Chart">
+			
+									</IconTabFilter>
+						</items>
+					</IconTabBar>
 				</content>
 			</Page>
 		</detailPages>
@@ -35,19 +92,12 @@
 			<Page id="master" title="master" class="sapUiStdPage">
 				<customHeader>
 					<Toolbar>
-						<SearchField
-							liveChange="onSearch"
-							width="100%" />
+						<SearchField liveChange="onSearch" width="100%" />
 					</Toolbar>
 				</customHeader>
 				<content>
-					<List
-						items="{
-							path: '/SensorCollection'
-						}" >
-						<StandardListItem
-							title="{SensorName}"
-							counter="{Quantity}"/>
+					<List id="sensorList" items="{ path: '/ProductCollection' }" >
+						<StandardListItem title="{Name}" counter="{Quantity}"/>
 					</List>
 				</content>
 			</Page>

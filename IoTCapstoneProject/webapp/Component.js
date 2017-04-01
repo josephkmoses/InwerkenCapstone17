@@ -1,9 +1,8 @@
 sap.ui.define([
 	"sap/ui/core/UIComponent",
 	"sap/ui/Device",
-	"gatewayapplicationIoTCapstoneProject/model/models",
-	"gatewayapplicationIoTCapstoneProject/utils/IOT"
-], function(UIComponent, Device, models, IOT) {
+	"gatewayapplicationIoTCapstoneProject/model/models"
+], function(UIComponent, Device, models) {
 	"use strict";
 
 	return UIComponent.extend("gatewayapplicationIoTCapstoneProject.Component", {
@@ -23,6 +22,8 @@ sap.ui.define([
 
 			// set the device model
 			this.setModel(models.createDeviceModel(), "device");
+			
 		}
+		
 	});
 });

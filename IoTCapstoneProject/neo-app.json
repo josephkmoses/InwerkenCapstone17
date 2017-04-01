@@ -32,7 +32,7 @@
      {
       "path": "/iotrdms/",
       "target": {
-        "name": "sapui5",
+        "name": "iotrdms",
         "entryPath": "/http"
       },
       "description": "iotrdms"
