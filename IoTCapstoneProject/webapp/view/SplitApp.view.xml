@@ -33,7 +33,7 @@
 								<Table id="idSensorTable"
 									inset="false"
 									items="{
-										path: '/SensortCollection',
+										path: '/sensor/name',
 											sorter: {
 											path: 'Name'
 										}
@@ -51,38 +51,21 @@
 										<Text text="Temperature (Celsius)" />
 									</Column>
 								</columns>
+								
 								<items>
 									<ColumnListItem>
 										<cells>
-											<ObjectIdentifier
-												title="{Name}"
-												text="{ProductId}"/>
-											<Text
-												text="{SupplierName}" />
-											<Text
-												text="{Width} x {Depth} x {Height} {DimUnit}" />
-											<ObjectNumber
-												number="{WeightMeasure}"
-												unit="{WeightUnit}"
-												state="{
-													path: 'WeightMeasure',
-													formatter: 'sap.m.sample.Table.Formatter.weightState'
-												}" />
-											<ObjectNumber
-													number="{
-														parts:[{path:'Price'},{path:'CurrencyCode'}],
-														type: 'sap.ui.model.type.Currency',
-														formatOptions: {showMeasure: false}
-													}"
-													unit="{CurrencyCode}" />
+											<ObjectIdentifier text="Date Here"/>
+											<Text text="Brightness Here" />
+											<Text text="Temperature Here" />
 										</cells>
 									</ColumnListItem>
-									</items>
-									</Table>
-									</IconTabFilter>
-									<IconTabFilter text="Chart">
+								</items>
+								</Table>
+								</IconTabFilter>
+								<IconTabFilter text="Chart">
 			
-									</IconTabFilter>
+								</IconTabFilter>
 						</items>
 					</IconTabBar>
 				</content>
@@ -96,8 +79,8 @@
 					</Toolbar>
 				</customHeader>
 				<content>
-					<List id="sensorList" items="{ path: '/ProductCollection' }" >
-						<StandardListItem title="{Name}" counter="{Quantity}"/>
+					<List id="sensorList" items="{path: '/sensor/'}" >
+						<StandardListItem title="{name}" counter="{Quantity}"/>
 					</List>
 				</content>
 			</Page>

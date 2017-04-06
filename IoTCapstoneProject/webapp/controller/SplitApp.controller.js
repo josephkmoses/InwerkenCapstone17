@@ -1,3 +1,4 @@
+/*eslint-disable no-console, no-alert */
 sap.ui.define([
 	'jquery.sap.global',
 	'sap/m/MessageToast',
@@ -18,8 +19,24 @@ sap.ui.define([
 				'icon':'desktop.ico'
 			});
 			
-			IOT.getDevices(MessageToast.show("Finished grabbing devices", {duration: 5000}));
-			//MessageToast.show(IOT.getDevices(), {duration: 5000});
+			//Defining Sensor OData Model
+	        var oData = {
+	           sensor : {
+	              name : "Sensor Name",
+	              id : "ID",
+	              timestamp : "timestamp"
+	           }
+	        };
+	         
+	        var oModel = new JSONModel(oData);
+	        this.getView().setModel(oModel);
+			
+			//This is being used to mainly debug the destination connectivity.
+			IOT.getDevices(function(result) {
+				MessageToast.show(result, {duration: 5000});
+			},function(error) {
+				MessageToast.show("Message Error", {duration: 5000});
+			});
 		},
 		
 		onOrientationChange: function(oEvent) {
@@ -65,26 +82,38 @@ sap.ui.define([
 			return result;
 		},
 		
-		//Switch functionality
+		//Switch functionality. Will not work until destinations are working.
 		onSwitchChange : function(oEvent) {
 			//Gather information for device push
-			//var deviceID;
-			//var messageTypeID;
-			//var timestamp = new Date().getTime();
-			//var messages = null;
+			//This is a test to push to ToggleLED table with registered Gateway Device
+			var deviceID = "76ee3496-02b7-4f45-8571-a661a5b936b7";
+			var messageTypeID = "94b6e5322f395cfbaaf3";
+			var timestamp = new Date().getTime();
+			var messages = null;
 			var isGreen = oEvent.getSource().getState();
+			
 			if(isGreen) {
 				MessageToast.show("Resolving issue...", {duration: 5000});
-				/*
+				
+			} else {
+				MessageToast.show("Creating issue...", {duration: 5000});
 				messages = [{
-					"id": 12345,
+					"id": "30344719333832391a002600", //LED change for exom
 					"timestamp": timestamp,
 					"setGreenLED": true
 				}];
-				*/
-			} else {
-				MessageToast.show("Creating issue...", {duration: 5000});
-				
+				IOT.pushData(deviceID, "http", "UI5 Front End", messageTypeID, messages,
+				function(result) {
+					MessageToast.show("Message was pushed", {duration: 5000});
+					MessageToast.show(result, {duration: 5000});
+				}, function(result) {
+					MessageToast.show("Message push error", {duration: 5000});
+				}, {
+		        headers: {
+		            "Authorization": "Bearer " + "38f076a2a3daabae17e45d7224689861",
+		            "Content-type" : "text/html"
+		        }
+		    	});
 			}
 		}
 		
