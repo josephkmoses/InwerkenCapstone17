@@ -1,0 +1,97 @@
+<mvc:View controllerName="gatewayapplicationIoTCapstoneProject.controller.SplitApp" xmlns:html="http://www.w3.org/1999/xhtml"
+	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
+	<SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
+		<detailPages>
+			<Page id="detail" title="Sensor Name" class="sapUiStdPage">
+				<headerContent>
+				<HBox>
+					<Switch type="AcceptReject" state="true" change="onSwitchChange">
+						<layoutData>
+							<FlexItemData growFactor="1" />
+						</layoutData>
+					</Switch>
+				</HBox>
+				</headerContent>
+				<content>
+					<ObjectHeader
+						title="SensorName">
+						<statuses>
+							<ObjectStatus
+								text="Nothing's Wrong"
+								state="Success" />
+						</statuses>
+						<attributes>
+							<ObjectAttribute text="ID: " />
+							<ObjectAttribute text="Last Updated: " />
+							<ObjectAttribute text="Current Temperature: " />
+							<ObjectAttribute text="Current Humidity: " />
+							<ObjectAttribute text="Current Brightness: " />
+						</attributes>
+					</ObjectHeader>
+					<IconTabBar expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+						<items>
+							<IconTabFilter text="Table">
+								<Table id="idSensorTable"
+									inset="false"
+									items="{
+										path: '/sensor/name',
+											sorter: {
+											path: 'Name'
+										}
+								}">
+
+								<columns>
+									<Column
+										width="12em">
+										<Text text="Timestamp" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Temperature (Celsius)" />
+									</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Humidity" />
+									</Column>
+									<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Brightness (Lux)" />
+									</Column>
+								</columns>
+								
+								<items>
+									<ColumnListItem>
+										<cells>
+											<ObjectIdentifier text="Date Here"/>
+											<Text text="Temperature Here" />
+											<Text text="Humidity here" />
+											<Text text="Brightness Here" />
+										</cells>
+									</ColumnListItem>
+								</items>
+								</Table>
+								</IconTabFilter>
+								<IconTabFilter text="Chart">
+			
+								</IconTabFilter>
+						</items>
+					</IconTabBar>
+				</content>
+			</Page>
+		</detailPages>
+		
+		<masterPages>
+			<Page id="master" title="master" class="sapUiStdPage">
+				<customHeader>
+					<Toolbar>
+						<SearchField liveChange="onSearch" width="100%" />
+					</Toolbar>
+				</customHeader>
+				<content>
+					<List id="deviceList" items="{path: 'devices>/devices'}" itemPress="handleItem" >
+						<StandardListItem title="{devices>name}"
+											description="{devices>id}"
+											type="Active"/>
+					</List>
+				</content>
+			</Page>
+		</masterPages>
+	</SplitApp>
+</mvc:View>
