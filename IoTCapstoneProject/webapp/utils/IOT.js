@@ -1,4 +1,4 @@
-/*eslint linebreak-style: ["error", "unix"]*/
+/*eslint-disable */
 jQuery.sap.declare("sap.services.IOT");
 
 sap.ui.define([], function() {
@@ -12,6 +12,8 @@ sap.ui.define([], function() {
      * @public
      */
 
+	//https://iotrdmsiotservices-p1942404413trial.hanatrial.ondemand.com/com.sap.iotservices.dms/v2/api/devices
+
 	var _dmsUrl = "/iotrdms/",
 		_mmsUrl = "/iotmms/";
 
@@ -21,7 +23,7 @@ sap.ui.define([], function() {
 		} else if(sap.m && sap.m.MessageBox && typeof sap.m.MessageBox.error === "function") {
 			sap.m.MessageBox.error(msg);
 		} else {
-			alert(msg);
+			alert();
 		}
 	};
 	var _handleError = function(para) {

@@ -4,13 +4,13 @@
 		<detailPages>
 			<Page id="detail" title="Sensor Name" class="sapUiStdPage">
 				<headerContent>
-					<HBox>
-				<Switch type="AcceptReject" state="true" change="onSwitchChange">
-					<layoutData>
-						<FlexItemData growFactor="1" />
-					</layoutData>
-				</Switch>
-			</HBox>
+				<HBox>
+					<Switch type="AcceptReject" state="true" change="onSwitchChange">
+						<layoutData>
+							<FlexItemData growFactor="1" />
+						</layoutData>
+					</Switch>
+				</HBox>
 				</headerContent>
 				<content>
 					<ObjectHeader
@@ -24,6 +24,7 @@
 							<ObjectAttribute text="ID: " />
 							<ObjectAttribute text="Last Updated: " />
 							<ObjectAttribute text="Current Temperature: " />
+							<ObjectAttribute text="Current Humidity: " />
 							<ObjectAttribute text="Current Brightness: " />
 						</attributes>
 					</ObjectHeader>
@@ -45,10 +46,13 @@
 										<Text text="Timestamp" />
 									</Column>
 									<Column minScreenWidth="Tablet" demandPopin="true">
-										<Text text="Brightness (Lux)" />
+										<Text text="Temperature (Celsius)" />
+									</Column>
+										<Column minScreenWidth="Tablet" demandPopin="true">
+										<Text text="Humidity" />
 									</Column>
 									<Column minScreenWidth="Tablet" demandPopin="true">
-										<Text text="Temperature (Celsius)" />
+										<Text text="Brightness (Lux)" />
 									</Column>
 								</columns>
 								
@@ -56,8 +60,9 @@
 									<ColumnListItem>
 										<cells>
 											<ObjectIdentifier text="Date Here"/>
-											<Text text="Brightness Here" />
 											<Text text="Temperature Here" />
+											<Text text="Humidity here" />
+											<Text text="Brightness Here" />
 										</cells>
 									</ColumnListItem>
 								</items>
@@ -71,6 +76,7 @@
 				</content>
 			</Page>
 		</detailPages>
+		
 		<masterPages>
 			<Page id="master" title="master" class="sapUiStdPage">
 				<customHeader>
@@ -79,8 +85,10 @@
 					</Toolbar>
 				</customHeader>
 				<content>
-					<List id="sensorList" items="{path: '/sensor/'}" >
-						<StandardListItem title="{name}" counter="{Quantity}"/>
+					<List id="deviceList" items="{path: 'devices>/devices'}" itemPress="handleItem" >
+						<StandardListItem title="{devices>name}"
+											description="{devices>id}"
+											type="Active"/>
 					</List>
 				</content>
 			</Page>

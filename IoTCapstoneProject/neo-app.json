@@ -24,16 +24,16 @@
      {
       "path": "/iotmms/",
       "target": {
-        "name": "iotmms",
-        "entryPath": "/http"
+      	"type" : "destination",
+        "name": "iotmms"
       },
       "description": "iotmms"
     },
      {
       "path": "/iotrdms/",
       "target": {
-        "name": "iotrdms",
-        "entryPath": "/http"
+      	"type" : "destination",
+        "name": "iotrdms"
       },
       "description": "iotrdms"
     }
