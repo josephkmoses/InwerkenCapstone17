@@ -1,11 +1,11 @@
-<mvc:View controllerName="gatewayapplicationIoTCapstoneProject.controller.SplitApp" xmlns:html="http://www.w3.org/1999/xhtml"
-	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<SplitApp id="SplitAppDemo" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
-		<detailPages>
-			<Page id="detail" title="Sensor Name" class="sapUiStdPage">
+<mvc:View xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m"
+	controllerName="gatewayapplicationIoTCapstoneProject.controller.Detail" xmlns:html="http://www.w3.org/1999/xhtml">
+	<App>
+		<pages>
+			<Page id="detail" title="{i18n>sensorName}" class="sapUiStdPage">
 				<headerContent>
 				<HBox>
-					<Switch type="AcceptReject" state="true" change="onSwitchChange">
+					<Switch type="AcceptReject" state="true" change="onSwitchPress">
 						<layoutData>
 							<FlexItemData growFactor="1" />
 						</layoutData>
@@ -14,18 +14,18 @@
 				</headerContent>
 				<content>
 					<ObjectHeader
-						title="SensorName">
+						title="{i18n>sensorName}">
 						<statuses>
 							<ObjectStatus
 								text="Nothing's Wrong"
 								state="Success" />
 						</statuses>
-						<attributes>
-							<ObjectAttribute text="ID: " />
-							<ObjectAttribute text="Last Updated: " />
-							<ObjectAttribute text="Current Temperature: " />
-							<ObjectAttribute text="Current Humidity: " />
-							<ObjectAttribute text="Current Brightness: " />
+						<attributes items="{path: 'devices>/devices'}">
+							<ObjectAttribute text="ID: {parts:['i18n>sensorName', 'device>/name'], formatter: 'jQuery.sap.formatMessage'}" />
+							<ObjectAttribute text="Last Updated: {i18n>lastUpdate}" />
+							<ObjectAttribute text="Current Temperature: {i18n>currentTemperature}" />
+							<ObjectAttribute text="Current Humidity: {i18n>currentHumidity}" />
+							<ObjectAttribute text="Current Brightness: {i18n>currentBrightness}" />
 						</attributes>
 					</ObjectHeader>
 					<IconTabBar expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
@@ -69,29 +69,11 @@
 								</Table>
 								</IconTabFilter>
 								<IconTabFilter text="Chart">
-			
 								</IconTabFilter>
 						</items>
 					</IconTabBar>
 				</content>
 			</Page>
-		</detailPages>
-		
-		<masterPages>
-			<Page id="master" title="master" class="sapUiStdPage">
-				<customHeader>
-					<Toolbar>
-						<SearchField liveChange="onSearch" width="100%" />
-					</Toolbar>
-				</customHeader>
-				<content>
-					<List id="deviceList" items="{path: 'devices>/devices'}" itemPress="handleItem" >
-						<StandardListItem title="{devices>name}"
-											description="{devices>id}"
-											type="Active"/>
-					</List>
-				</content>
-			</Page>
-		</masterPages>
-	</SplitApp>
+		</pages>
+	</App>
 </mvc:View>

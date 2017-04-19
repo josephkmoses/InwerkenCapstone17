@@ -25,7 +25,8 @@
       "path": "/iotmms/",
       "target": {
       	"type" : "destination",
-        "name": "iotmms"
+        "name": "iotmms",
+        "entryPath" : "/http"
       },
       "description": "iotmms"
     },

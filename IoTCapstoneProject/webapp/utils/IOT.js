@@ -17,6 +17,8 @@ sap.ui.define([], function() {
 	var _dmsUrl = "/iotrdms/",
 		_mmsUrl = "/iotmms/";
 
+	var sensorDataMessageTypeID = "/6afb82588a1142c0c481";
+
 	var _showError = function(msg) {
 		if(sap.ui.commons && typeof sap.ui.commons.MessageBox.show === "function") {
 			sap.ui.commons.MessageBox.show(msg, "ERROR", "Error");
@@ -329,7 +331,7 @@ sap.ui.define([], function() {
      * @name sap.services.IOT.getData
      * @public
      */
-	var getData = function(device,done, fail, options) {
+	var getData = function(device, done, fail, options) {
 		_get(_mmsUrl + "data/" + device, done, fail, options);
 	};
     /**
@@ -402,7 +404,7 @@ sap.ui.define([], function() {
 	};
 	if(location.protocol !== "https:") {
 		setServiceUrl(
-			"https://iotrdmsx36737db5-p1942404413trial.hanatrial.ondemand.com/com.sap.iotservices.dms/api/",
+			"https://iotrdmsx36737db5-p1942404413trial.hanatrial.ondemand.com/com.sap.iotservices.dms/api",
 			"https://iotmmsp1942404413trial.hanatrial.ondemand.com/com.sap.iotservices.mms/v1/api/http/");
 	}
 
