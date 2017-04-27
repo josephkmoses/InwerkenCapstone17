@@ -45,9 +45,10 @@ sap.ui.define([
             //MessageToast.show("Focusing on " + focusedListItemID, {duration: 5000});
             console.log(that.getFocusedListItemID());
             
-			
-            
-            //var oAuthToken = "a44ab95f618aa7e53c37aa6ffdd61a3";
+         
+         
+		
+            var oAuthToken = "814619211e65e689e1f47f0f68243";
             
 			//Communicating with the iotmms to get information related to the selected list item.
 			//Upon completion, an oModel should be defined to populate the detail pane.
@@ -59,7 +60,7 @@ sap.ui.define([
 				MessageToast.show("Message Error", {duration: 5000});
 			},{
 		        headers: {
-		            //"Authorization": "Bearer " + oAuthToken,
+		            "Authorization": "Bearer " + oAuthToken,
 		            "Accept" : "application/json"
 		    }});
 			
@@ -125,6 +126,7 @@ sap.ui.define([
 				MessageToast.show("Resolving issue...", {duration: 5000});
 				//LED change for exom
 				messages = [{
+					//Currently, deviceID is sending the wrong type of ID. Needs the "id" from its attribute section.
 					"id": focusedListItemID, 
 					"timestamp": "2012-04-23T18:25:43.511Z",
 					"setLEDGreen": "true"
@@ -139,12 +141,14 @@ sap.ui.define([
 				MessageToast.show("Creating issue...", {duration: 5000});
 				//LED change for exom
 				messages = [{
+					//Currently, deviceID is sending the wrong type of ID. Needs the "id" from its attribute section.
 					"id": focusedListItemID, 
 					"timestamp": "2012-04-23T18:25:43.511Z",
 					"setLEDGreen": "false"
 				}];
 				IOT.pushData(deviceID, "http", "UI5 Front End", messageTypeID, messages,
 				function(result) {
+					console.log(JSON.stringify(result, null, 4));
 					MessageToast.show("Message was pushed", {duration: 5000});
 				}, function(result) {
 					MessageToast.show("Message push error", {duration: 5000});

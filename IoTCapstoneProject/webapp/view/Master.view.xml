@@ -15,9 +15,7 @@
 				</customHeader>
 				<content>
 					<List id="deviceList" items="{path: 'devices>/devices'}" itemPress="masterListItemFocus" >
-						<StandardListItem title="{devices>name}"
-											description="{devices>id}"
-											type="Active"/>
+						<StandardListItem title="{devices>name}" description="{devices>id}" type="Active"/>
 					</List>
 				</content>
 			</Page>
