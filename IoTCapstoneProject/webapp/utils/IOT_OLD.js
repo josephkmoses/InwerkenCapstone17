@@ -12,8 +12,12 @@ sap.ui.define([], function() {
      * @public
      */
 
+	//https://iotrdmsiotservices-p1942404413trial.hanatrial.ondemand.com/com.sap.iotservices.dms/v2/api/devices
+
 	var _dmsUrl = "/iotrdms/",
 		_mmsUrl = "/iotmms/";
+
+	var sensorDataMessageTypeID = "/6afb82588a1142c0c481";
 
 	var _showError = function(msg) {
 		if(sap.ui.commons && typeof sap.ui.commons.MessageBox.show === "function") {
@@ -21,7 +25,7 @@ sap.ui.define([], function() {
 		} else if(sap.m && sap.m.MessageBox && typeof sap.m.MessageBox.error === "function") {
 			sap.m.MessageBox.error(msg);
 		} else {
-			alert(msg);
+			alert();
 		}
 	};
 	var _handleError = function(para) {
@@ -327,7 +331,7 @@ sap.ui.define([], function() {
      * @name sap.services.IOT.getData
      * @public
      */
-	var getData = function(device,done, fail, options) {
+	var getData = function(device, done, fail, options) {
 		_get(_mmsUrl + "data/" + device, done, fail, options);
 	};
     /**
@@ -400,7 +404,7 @@ sap.ui.define([], function() {
 	};
 	if(location.protocol !== "https:") {
 		setServiceUrl(
-			"https://iotrdmsx36737db5-p1942404413trial.hanatrial.ondemand.com/com.sap.iotservices.dms/api/",
+			"https://iotrdmsx36737db5-p1942404413trial.hanatrial.ondemand.com/com.sap.iotservices.dms/api",
 			"https://iotmmsp1942404413trial.hanatrial.ondemand.com/com.sap.iotservices.mms/v1/api/http/");
 	}
 

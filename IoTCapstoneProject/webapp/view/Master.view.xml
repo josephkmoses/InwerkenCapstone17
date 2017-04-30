@@ -1,12 +1,24 @@
 <mvc:View controllerName="gatewayapplicationIoTCapstoneProject.controller.Master" xmlns:html="http://www.w3.org/1999/xhtml"
 	xmlns:mvc="sap.ui.core.mvc" displayBlock="true" xmlns="sap.m">
-	<App>
-		<pages>
-			<Page title="{i18n>title}">
+	<SplitApp id="Master" initialDetail="detail" initialMaster="master" orientationChange="onOrientationChange">
+		
+		<detailPages>
+			<mvc:XMLView viewName="gatewayapplicationIoTCapstoneProject.view.Detail"/>
+		</detailPages>
+		
+		<masterPages>
+			<Page id="master" title="master" class="sapUiStdPage">
+				<customHeader>
+					<Toolbar>
+						<SearchField liveChange="onSearch" width="100%" />
+					</Toolbar>
+				</customHeader>
 				<content>
-					 <mvc:XMLView viewName="gatewayapplicationIoTCapstoneProject.view.SplitApp"/>
+					<List id="deviceList" items="{path: 'devices>/devices'}" itemPress="masterListItemFocus" >
+						<StandardListItem title="{devices>name}" description="{devices>id}" type="Active"/>
+					</List>
 				</content>
 			</Page>
-		</pages>
-	</App>
+		</masterPages>
+	</SplitApp>
 </mvc:View>
