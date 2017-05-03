@@ -12,19 +12,23 @@ sap.ui.define([
 	
 	var that;
 	var focusedListItemID;
+
 	//Related to the device id property that needs to be pushed back to the gateway in order to
 	//differentiate between multiple devices.
 	var focusedShelfNetDeviceID;
+
 	
 	return Controller.extend("gatewayapplicationIoTCapstoneProject.controller.Master", {
 		
 		onInit: function(){
 			
+
 			//Adding communication with the master parent view to the Detail child view for LED pushes from switch
 			var oEventBus = sap.ui.getCore().getEventBus();
 			oEventBus.subscribe("Detail", "pushLEDChange", this.pushLEDChange, this);
 			
 			that = this;
+
 			
 			var oData = IOT.getDevices(function(result) {
 				
@@ -47,7 +51,7 @@ sap.ui.define([
             //MessageToast.show("Focusing on " + focusedListItemID, {duration: 5000});
             console.log(that.getFocusedListItemID());
             
-			
+
             var oAuthToken = "814619211e65e689e1f47f0f68243";
             
 			//Communicating with the iotmms to get information related to the selected list item.
@@ -55,9 +59,11 @@ sap.ui.define([
             var oData = IOT.getData(focusedListItemID, function(result) {
             	
             	
+
 				MessageToast.show("Selected " + title, {duration: 5000});
 			}, function(error) {
 				//MessageToast.show("Message Error", {duration: 5000});
+
 			},{
 		        headers: {
 		            "Authorization": "Bearer " + oAuthToken,
@@ -114,12 +120,15 @@ sap.ui.define([
 		},
 		
 		//Switch functionality. Will not work until destinations are working.
+
 		pushLEDChange : function(sChanel, sEvent, oData) {
+
 			//Gather information for device push
 			var deviceID = focusedListItemID //Currently focused list item. Switch won't work unless one was selected.
 			var messageTypeID = "94b6e5322f395cfbaaf3";
 			var timestamp = new Date().getTime();
 			var messages = null;
+
 			
 			console.log(oData.text);
 			
@@ -127,6 +136,7 @@ sap.ui.define([
 				MessageToast.show("Resolving issue...", {duration: 5000});
 				messages = [{
 					"id": deviceID,
+
 					"timestamp": "2012-04-23T18:25:43.511Z",
 					"setLEDGreen": "true"
 				}];
@@ -138,8 +148,10 @@ sap.ui.define([
 				});
 			} else {
 				MessageToast.show("Creating issue...", {duration: 5000});
+
 				messages = [{
 					"id": deviceID, 
+
 					"timestamp": "2012-04-23T18:25:43.511Z",
 					"setLEDGreen": "false"
 				}];

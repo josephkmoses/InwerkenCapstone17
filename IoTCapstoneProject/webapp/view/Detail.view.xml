@@ -2,7 +2,9 @@
 	controllerName="gatewayapplicationIoTCapstoneProject.controller.Detail" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
+
 			<Page id="detail" title="" class="sapUiStdPage">
+
 				<headerContent>
 				<HBox>
 					<Switch type="AcceptReject" state="true" change="onSwitchPress">
@@ -13,6 +15,7 @@
 				</HBox>
 				</headerContent>
 				<content>
+
 					<ObjectHeader title="Exom">
 						<statuses>
 							<ObjectStatus text="(Status Goes Here)" state="Success" />
@@ -30,6 +33,7 @@
 						<items>
 							<IconTabFilter text="Table">
 								<Table id="idSensorTable" inset="false" items="{ path: 'deviceData>/deviceData' }">
+
 
 								<columns>
 									<Column
@@ -50,6 +54,7 @@
 								<items>
 									<ColumnListItem>
 										<cells>
+
 											<ObjectIdentifier text="{deviceData>timestamp}"/>
 											<Text text="{deviceData>celcius}" />
 											<Text text="{deviceData>humidity}" />
@@ -64,6 +69,7 @@
 								<IconTabFilter text="Chart">
 								</IconTabFilter>
 								
+
 						</items>
 					</IconTabBar>
 				</content>

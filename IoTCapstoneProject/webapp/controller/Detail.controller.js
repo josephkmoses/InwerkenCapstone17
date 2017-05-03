@@ -10,6 +10,7 @@ sap.ui.define([
 ], function(jQuery, MessageToast, Fragment, Controller, Filter, JSONModel, IOT) {
 	"use strict";
 
+
 	var that;
 
 	return Controller.extend("gatewayapplicationIoTCapstoneProject.controller.Detail", {
@@ -58,6 +59,7 @@ sap.ui.define([
 			console.log(detailCollection);
 					
 		},
+
 		
 		onSwitchPress: function(oEvent) {
 			var oEventBus = sap.ui.getCore().getEventBus();
