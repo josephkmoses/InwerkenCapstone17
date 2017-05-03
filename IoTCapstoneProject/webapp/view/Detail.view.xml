@@ -2,7 +2,7 @@
 	controllerName="gatewayapplicationIoTCapstoneProject.controller.Detail" xmlns:html="http://www.w3.org/1999/xhtml">
 	<App>
 		<pages>
-			<Page id="detail" title="{i18n>sensorName}" class="sapUiStdPage">
+			<Page id="detail" title="" class="sapUiStdPage">
 				<headerContent>
 				<HBox>
 					<Switch type="AcceptReject" state="true" change="onSwitchPress">
@@ -13,32 +13,23 @@
 				</HBox>
 				</headerContent>
 				<content>
-					<ObjectHeader
-						title="{i18n>sensorName}">
+					<ObjectHeader title="Exom">
 						<statuses>
-							<ObjectStatus
-								text="Nothing's Wrong"
-								state="Success" />
+							<ObjectStatus text="(Status Goes Here)" state="Success" />
 						</statuses>
-						<attributes items="{path: 'devices>/devices'}">
-							<ObjectAttribute text="ID: {parts:['i18n>sensorName', 'device>/name'], formatter: 'jQuery.sap.formatMessage'}" />
-							<ObjectAttribute text="Last Updated: {i18n>lastUpdate}" />
-							<ObjectAttribute text="Current Temperature: {i18n>currentTemperature}" />
-							<ObjectAttribute text="Current Humidity: {i18n>currentHumidity}" />
-							<ObjectAttribute text="Current Brightness: {i18n>currentBrightness}" />
+						
+						<attributes items="{path: 'deviceData>/deviceData'}">
+							<ObjectAttribute text="Last Updated: 2017-05-2 18:25:43" />
+							<ObjectAttribute text="Current Temperature: 20.87" />
+							<ObjectAttribute text="Current Humidity: 15.72" />
+							<ObjectAttribute text="Current Brightness: 10.01" />
 						</attributes>
+						
 					</ObjectHeader>
-					<IconTabBar expanded="{device>/isNoPhone}" class="sapUiResponsiveContentPadding">
+					<IconTabBar class="sapUiResponsiveContentPadding">
 						<items>
 							<IconTabFilter text="Table">
-								<Table id="idSensorTable"
-									inset="false"
-									items="{
-										path: '/sensor/name',
-											sorter: {
-											path: 'Name'
-										}
-								}">
+								<Table id="idSensorTable" inset="false" items="{ path: 'deviceData>/deviceData' }">
 
 								<columns>
 									<Column
@@ -59,17 +50,20 @@
 								<items>
 									<ColumnListItem>
 										<cells>
-											<ObjectIdentifier text="Date Here"/>
-											<Text text="Temperature Here" />
-											<Text text="Humidity here" />
-											<Text text="Brightness Here" />
+											<ObjectIdentifier text="{deviceData>timestamp}"/>
+											<Text text="{deviceData>celcius}" />
+											<Text text="{deviceData>humidity}" />
+											<Text text="{deviceData>lux}" />
 										</cells>
 									</ColumnListItem>
 								</items>
+								
 								</Table>
+								
 								</IconTabFilter>
 								<IconTabFilter text="Chart">
 								</IconTabFilter>
+								
 						</items>
 					</IconTabBar>
 				</content>
